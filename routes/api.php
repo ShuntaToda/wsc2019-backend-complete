@@ -21,4 +21,6 @@ Route::prefix("v1")->group(function () {
     });
 
     Route::get('events', [EventController::class, "index"]);
+
+    Route::get("organizers/{organizer-slug}/events/{event-slug}", [EventController::class, "show"]);
 });

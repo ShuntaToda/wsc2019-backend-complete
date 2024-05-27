@@ -30,13 +30,20 @@ class EventController extends Controller
      */
     public function show($organizer_slug, $event_slug)
     {
-        $event = Event::where("slug", $event_slug)->with([
+        $eventQuery = Event::where("slug", $event_slug);
+
+        if ($eventQuery->exists() === false) return response()->json(["message" => "Event not found"], 404);
+
+
+        $event = $eventQuery->with([
             "organizer" => function ($query) use ($organizer_slug) {
                 $query->where("slug", $organizer_slug);
             },
             "channels.rooms.programs",
             "tickets"
         ])->first();
+
+        if ($event->organizer === null) return response()->json(["message" => "Organizer not found"], 404);
         return $event;
         //         {
         //   "id": 1,

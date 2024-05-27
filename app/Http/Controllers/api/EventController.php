@@ -28,9 +28,55 @@ class EventController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($organizer_slug, $event_slug)
     {
-        //
+        $event = Event::where("slug", $event_slug)->with([
+            "organizer" => function ($query) use ($organizer_slug) {
+                $query->where("slug", $organizer_slug);
+            },
+            "channels.rooms.programs",
+            "tickets"
+        ])->first();
+        return $event;
+        //         {
+        //   "id": 1,
+        //   "name": "someText",
+        //   "slug": "some-text",
+        //   "date": "2019-08-15",
+        //   "channels": [
+        //     {
+        //       "id": 1,
+        //       "name": "someText",
+        //       "rooms": [
+        //         {
+        //           "id": 1,
+        //           "name": "someText",
+        //           "sessions": [
+        //             {
+        //               "id": 1,
+        //               "title": "someText",
+        //               "description": "someText",
+        //               "speaker": "someText",
+        //               "start": "2019-08-1510: 00: 00",
+        //               "end": "2019-08-15 10: 45: 00",
+        //               "type": "workshop",
+        //               "cost": 50|null
+        //             }
+        //           ]
+        //         }
+        //       ]
+        //     }
+        //   ],
+        //   "tickets": [
+        //     {
+        //       "id": 1,
+        //       "name": "someText",
+        //       "description": "Available until July 7, 2019"|null,
+        //       "cost": 199.99,
+        //       "available": true
+        //     }
+        //   ]
+        // }
     }
 
     /**

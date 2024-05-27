@@ -13,4 +13,8 @@ class Event extends Model
     {
         return $this->belongsTo(Organizer::class);
     }
+    public function channels()
+    {
+        return $this->hasMany(Channel::class);
+    }
 }

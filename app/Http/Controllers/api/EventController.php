@@ -13,7 +13,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::with("organizer")->get();
+        $events = Event::with("organizer")->orderBy("date", "DESC")->get();
         return $events;
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Event;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -12,7 +13,8 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        $events = Event::with("organizer")->get();
+        return $events;
     }
 
     /**

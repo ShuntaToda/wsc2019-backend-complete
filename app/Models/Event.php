@@ -17,4 +17,8 @@ class Event extends Model
     {
         return $this->hasMany(Channel::class);
     }
+    public function tickets()
+    {
+        return $this->hasMany(EventTicket::class);
+    }
 }

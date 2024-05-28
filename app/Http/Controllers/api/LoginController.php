@@ -18,4 +18,8 @@ class LoginController extends Controller
 
         return response()->json(["message" => "Invalid login"], 401);
     }
+
+    public function logout(Request $request)
+    {
+    }
 }

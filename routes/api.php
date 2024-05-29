@@ -24,10 +24,11 @@ Route::prefix("v1")->group(function () {
             return $request->user();
         });
         Route::post('logout', [LoginController::class, "logout"]);
+
+        Route::post("organizers/{organizer_slug}/events/{event_slug}", [EventController::class, "store"]);
     });
 
     Route::get('events', [EventController::class, "index"]);
 
     Route::get("organizers/{organizer_slug}/events/{event_slug}", [EventController::class, "show"]);
-    Route::post("organizers/{organizer_slug}/events/{event_slug}", [EventController::class, "store"]);
 });

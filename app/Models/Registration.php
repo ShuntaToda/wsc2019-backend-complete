@@ -15,4 +15,14 @@ class Registration extends Model
     ];
 
     public $timestamps = false;
+
+    public function ticket()
+    {
+        return $this->belongsTo(EventTicket::class, "ticket_id");
+    }
+
+    public function programRegistrations()
+    {
+        return $this->hasMany(ProgramRegistration::class);
+    }
 }

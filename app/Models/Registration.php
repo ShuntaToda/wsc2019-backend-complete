@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Registration extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        "attendee_id",
+        "ticket_id",
+        "registration_time"
+    ];
+
+    public $timestamps = false;
 }

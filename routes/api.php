@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\api\EventController;
 use App\Http\Controllers\api\LoginController;
+use App\Http\Controllers\TicketController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +26,7 @@ Route::prefix("v1")->group(function () {
         });
         Route::post('logout', [LoginController::class, "logout"]);
 
-        Route::post("organizers/{organizer_slug}/events/{event_slug}", [EventController::class, "store"]);
+        Route::post("organizers/{organizer_slug}/events/{event_slug}", [TicketController::class, "store"]);
     });
 
     Route::get('events', [EventController::class, "index"]);

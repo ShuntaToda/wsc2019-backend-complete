@@ -26,7 +26,7 @@ Route::prefix("v1")->group(function () {
         });
         Route::post('logout', [LoginController::class, "logout"]);
 
-        Route::post("organizers/{organizer_slug}/events/{event_slug}", [TicketController::class, "store"]);
+        Route::post("organizers/{organizer_slug}/events/{event_slug}/registration", [TicketController::class, "store"]);
     });
 
     Route::get('events', [EventController::class, "index"]);

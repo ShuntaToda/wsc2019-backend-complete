@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EventTicket;
 use App\Models\Registration;
 use Illuminate\Http\Request;
 
@@ -20,10 +21,11 @@ class RegistrationController extends Controller
      */
     public function store(Request $request)
     {
-        return response()->json("aaaa");
         $registration = Registration::where([["attendee_id", $request->user()->id], ["ticket_id", $request->ticket_id]])->first();
         if ($registration) return response()->json(["message" => "User already registered"], 401);
-        if ($registration) return response()->json(["message" => "User already registered"], 401);
+        $ticket = EventTicket::find($request->ticket_id);
+        if ($ticket === null || $ticket->isAvailable() === false) return response()->json(["message" => "Ticket is no longer available"], 401);
+        return response()->json(["message" => "Registration successful"], 200);
     }
 
     /**

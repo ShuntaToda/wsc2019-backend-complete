@@ -16,6 +16,7 @@ class EventTicket extends Model
 
     public function isAvailable()
     {
+        if ($this->special_validity === null) return true;
         $special_validity = json_decode($this->special_validity);
         switch ($special_validity->type) {
             case ("amount"):

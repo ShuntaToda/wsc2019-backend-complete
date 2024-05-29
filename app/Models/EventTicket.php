@@ -14,6 +14,11 @@ class EventTicket extends Model
         return $this->hasMany(Registration::class, "ticket_id");
     }
 
+    public function event()
+    {
+        return $this->belongsTo(Event::class);
+    }
+
     public function isAvailable()
     {
         if ($this->special_validity === null) return true;

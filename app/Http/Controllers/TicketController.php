@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Registration;
 use Illuminate\Http\Request;
 
-class TicketController extends Controller
+class RegistrationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,6 +21,7 @@ class TicketController extends Controller
     public function store(Request $request)
     {
         $registration = Registration::where([["attendee_id", $request->user()->id], ["ticket_id", $request->ticket_id]])->first();
+        if ($registration) return response()->json(["message" => "User already registered"], 401);
         if ($registration) return response()->json(["message" => "User already registered"], 401);
         return true;
     }

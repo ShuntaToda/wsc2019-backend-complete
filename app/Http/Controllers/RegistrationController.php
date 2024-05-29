@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\EventTicket;
 use App\Models\Registration;
+use Exception;
 use Illuminate\Http\Request;
 
 class RegistrationController extends Controller
@@ -25,6 +26,15 @@ class RegistrationController extends Controller
         if ($registration) return response()->json(["message" => "User already registered"], 401);
         $ticket = EventTicket::find($request->ticket_id);
         if ($ticket === null || $ticket->isAvailable() === false) return response()->json(["message" => "Ticket is no longer available"], 401);
+        try {
+            Registration::create([
+                "attendee_id" => $request->user()->id,
+                "ticket_id" => $ticket->id,
+                "registration_time" => now()->format("Y-m-d H:i:s"),
+            ]);
+        } catch (Exception $e) {
+            return $e;
+        }
         return response()->json(["message" => "Registration successful"], 200);
     }
 

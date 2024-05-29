@@ -51,9 +51,51 @@ class RegistrationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request)
     {
-        //
+        $registrations = Registration::with(["ticket.event", "programRegistrations"])->get();
+        $formatted_registrations = $registrations->map(function ($registration) {
+            return [
+                "event" => [
+                    "id" => $registration->ticket->event->id,
+                    "name" => $registration->ticket->event->name,
+                    "slug" => $registration->ticket->event->slug,
+                    "date" => $registration->ticket->event->date,
+                    "organizer" => [
+                        "id" => $registration->ticket->event->organizer->id,
+                        "name" => $registration->ticket->event->organizer->name,
+                        "slug" => $registration->ticket->event->organizer->slug
+                    ]
+                ],
+                "session_ids" => $registration->programRegistrations->pluck("program_id")
+            ];
+        });
+        return [
+            "registrations" => $formatted_registrations
+        ];
+        // {
+        //     "registrations": [
+        //         {
+        //             "event": {
+        //                 "id": 1,
+        //                 "name": "someText",
+        //                 "slug": "some-text",
+        //                 "date": "2019-08-15",
+        //                 "organizer": {
+        //                     "id": 1,
+        //                     "name": "someText",
+        //                     "slug": "some-text"
+        //                 }
+        //             },
+        //             "session_ids": [
+        //                 1,
+        //                 2,
+        //                 3
+        //             ]
+        //         }
+        //     ]
+        // }
+        return Registration::where("attendee_id", $request->user()->id)->get();
     }
 
     /**

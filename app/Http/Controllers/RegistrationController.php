@@ -20,10 +20,10 @@ class RegistrationController extends Controller
      */
     public function store(Request $request)
     {
+        return response()->json("aaaa");
         $registration = Registration::where([["attendee_id", $request->user()->id], ["ticket_id", $request->ticket_id]])->first();
         if ($registration) return response()->json(["message" => "User already registered"], 401);
         if ($registration) return response()->json(["message" => "User already registered"], 401);
-        return true;
     }
 
     /**

@@ -29,4 +29,5 @@ Route::prefix("v1")->group(function () {
     Route::get('events', [EventController::class, "index"]);
 
     Route::get("organizers/{organizer_slug}/events/{event_slug}", [EventController::class, "show"]);
+    Route::post("organizers/{organizer_slug}/events/{event_slug}", [EventController::class, "store"]);
 });

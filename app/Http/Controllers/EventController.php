@@ -22,7 +22,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        return view("events.create");
     }
 
     /**
@@ -30,7 +30,25 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "name" => ["required"],
+            "slug" => ["required", "unique:events", "regex:/^[a-z0-9-]+$/"],
+            "date" => ["required", "date_format:Y-m-d"],
+        ], [
+            "slug.unique" => "Slug is already used",
+            "slug.regex" => "Slug must not be empty and only contain a-z, 0-9 and '-'",
+            "slug.required" => "Slug must not be empty and only contain a-z, 0-9 and '-'",
+        ]);
+
+
+        $event = Event::create([
+            "organizer_id" => Auth::user()->id,
+            "name" => $request->name,
+            "slug" => $request->slug,
+            "date" => $request->date,
+        ]);
+
+        return redirect(route("admin.event.detail"))->with(["message" => "Event successfully created"]);
     }
 
     /**

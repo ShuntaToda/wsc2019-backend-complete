@@ -6,7 +6,7 @@
         <nav class="col-md-2 d-none d-md-block bg-light sidebar">
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link active" href="events/index.html">Manage Events</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{{route("admin.event.index")}}">Manage Events</a></li>
                 </ul>
             </div>
         </nav>
@@ -23,8 +23,8 @@
                 </div>
             </div>
 
-            <form class="needs-validation" novalidate action="events/detail.html">
-
+            <form class="needs-validation" novalidate action="{{route("admin.event.create")}}" method="POST">
+                @csrf
                 <div class="row">
                     <div class="col-12 col-lg-4 mb-3">
                         <label for="inputName">Name</label>
@@ -54,8 +54,9 @@
 
                 <hr class="mb-4">
                 <button class="btn btn-primary" type="submit">Save event</button>
-                <a href="events/index.html" class="btn btn-link">Cancel</a>
+                <a href="{{route("admin.event.index")}}" class="btn btn-link">Cancel</a>
             </form>
+            {{dd($errors->all())}}
 
         </main>
     </div>

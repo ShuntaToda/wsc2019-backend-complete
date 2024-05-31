@@ -23,8 +23,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
             return redirect(route("home"));
         }
-
-        return back();
+        return back()->with(["message" => "Email or password not correct"]);
     }
 
     public function logout(Request $request)

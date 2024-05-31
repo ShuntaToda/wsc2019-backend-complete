@@ -20,8 +20,8 @@
                 {{-- @if($errors->has("password") || $errors->has("email"))
                     <p>Email or password not correct</p>
                 @endif --}}
-                @if($errors->any())
-                    <p>Email or password not correct</p>
+                @if($errors->any() || session("message"))
+                    <p>Email or password not correct</p>                    
                 @endif
             </form>
 

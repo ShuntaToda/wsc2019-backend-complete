@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\api\EventController;
 use App\Http\Controllers\api\LoginController;
-use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\api\RegistrationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

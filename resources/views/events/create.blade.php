@@ -1,30 +1,5 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Event Backend</title>
-
-    <base href="../">
-    <!-- Bootstrap core CSS -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
-    <!-- Custom styles -->
-    <link href="assets/css/custom.css" rel="stylesheet">
-</head>
-
-<body>
-<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="events/index.html">Event Platform</a>
-    <span class="navbar-organizer w-100">{insert organization name}</span>
-    <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
-            <a class="nav-link" id="logout" href="index.html">Sign out</a>
-        </li>
-    </ul>
-</nav>
+@include('layout.header')
+@include('layout.nav')
 
 <div class="container-fluid">
     <div class="row">
@@ -54,7 +29,8 @@
                     <div class="col-12 col-lg-4 mb-3">
                         <label for="inputName">Name</label>
                         <!-- adding the class is-invalid to the input, shows the invalid feedback below -->
-                        <input type="text" class="form-control is-invalid" id="inputName" name="name" placeholder="" value="">
+                        <input type="text" class="form-control is-invalid" id="inputName" name="name" placeholder=""
+                            value="">
                         <div class="invalid-feedback">
                             Name is required.
                         </div>
@@ -71,12 +47,8 @@
                 <div class="row">
                     <div class="col-12 col-lg-4 mb-3">
                         <label for="inputDate">Date</label>
-                        <input type="text"
-                               class="form-control"
-                               id="inputDate"
-                               name="date"
-                               placeholder="yyyy-mm-dd"
-                               value="">
+                        <input type="text" class="form-control" id="inputDate" name="date" placeholder="yyyy-mm-dd"
+                            value="">
                     </div>
                 </div>
 
@@ -89,5 +61,5 @@
     </div>
 </div>
 
-</body>
-</html>
+
+@include('layout.footer')

@@ -6,8 +6,9 @@
             <div class="pt-3 pb-2 mb-3 border-bottom text-center">
                 <h1 class="h2">WorldSkills Event Platform</h1>
             </div>
-
-            <form class="form-signin" action="events/index.html">
+            
+            <form class="form-signin" action="{{route("login")}}" method="POST">
+                @csrf
                 <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 
                 <label for="inputEmail" class="sr-only">Email</label>

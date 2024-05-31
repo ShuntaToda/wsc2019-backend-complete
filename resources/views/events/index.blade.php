@@ -25,7 +25,7 @@
               @foreach($events as $event)
               <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
-                        <a href="events/detail.html" class="btn text-left event">
+                        <a href="{{route("admin.event.detail", $event->id)}}" class="btn text-left event">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $event->name }}</h5>
                                 <p class="card-subtitle">{{$event->date}}</p>

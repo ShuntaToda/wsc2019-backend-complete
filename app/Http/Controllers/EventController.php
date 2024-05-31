@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -11,7 +13,8 @@ class EventController extends Controller
      */
     public function index()
     {
-        return view("events.index");
+        $events = Event::where("organizer_id", Auth::user()->id)->orderBy("date")->get();
+        return view("events.index", compact("events"));
     }
 
     /**

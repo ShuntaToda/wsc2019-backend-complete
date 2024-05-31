@@ -6,7 +6,7 @@
         <nav class="col-md-2 d-none d-md-block bg-light sidebar">
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link active" href="events/index.html">Manage Events</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{{route("admin.event.index")}}">Manage Events</a></li>
                 </ul>
             </div>
         </nav>
@@ -22,18 +22,20 @@
             </div>
 
             <div class="row events">
-                <div class="col-md-4">
+              @foreach($events as $event)
+              <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
                         <a href="events/detail.html" class="btn text-left event">
                             <div class="card-body">
-                                <h5 class="card-title">WorldSkills Conference 2019</h5>
-                                <p class="card-subtitle">{insert event date}</p>
+                                <h5 class="card-title">{{ $event->name }}</h5>
+                                <p class="card-subtitle">{{$event->date}}</p>
                                 <hr>
-                                <p class="card-text">3,546 registrations</p>
+                                <p class="card-text">{{$event->registrations->count()}} registrations</p>
                             </div>
                         </a>
                     </div>
                 </div>
+              @endforeach
             </div>
 
         </main>

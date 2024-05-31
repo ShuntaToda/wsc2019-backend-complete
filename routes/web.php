@@ -27,5 +27,10 @@ Route::middleware("auth")->get("/", function () {
 Route::middleware("auth")->prefix("admin")->as("admin.")->group(function () {
     Route::prefix("event")->as("event.")->group(function () {
         Route::get("index", [EventController::class, "index"])->name("index");
+        Route::get("create", [EventController::class, "create"])->name("create");
+        Route::post("create", [EventController::class, "store"])->name("create");
+        Route::get("detail/{id}", [EventController::class, "show"])->name("detail");
+        Route::get("edit/{id}", [EventController::class, "edit"])->name("edit");
+        Route::post("edit/{id}", [EventController::class, "update"])->name("edit");
     });
 });

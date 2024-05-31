@@ -34,5 +34,7 @@ class Handler extends ExceptionHandler
         if ($e instanceof AuthenticationException) {
             return response()->json(["message" => "Invalid token"], 401);
         }
+
+        return parent::render($request, $e);
     }
 }

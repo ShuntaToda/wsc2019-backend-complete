@@ -15,12 +15,21 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        \App\Models\User::create([
-            'username' => 'firstname lastname',
-            'firstname' => 'firstname',
-            'lastname' => 'lastname',
-            'email' => 'user@test.com',
-            "password" => Hash::make('password')
-        ]);
+        for ($i = 0; $i < 5; $i++) {
+            \App\Models\User::create([
+                'username' => 'firstname' . $i . 'lastname' . $i,
+                'firstname' => 'firstname' . $i,
+                'lastname' => 'lastname' . $i,
+                'email' => 'demo' . $i . '@worldskills.org',
+                "password" => Hash::make('demopass' . $i)
+            ]);
+        }
+        // \App\Models\User::create([
+        //     'username' => 'firstname lastname',
+        //     'firstname' => 'firstname',
+        //     'lastname' => 'lastname',
+        //     'email' => 'user@test.com',
+        //     "password" => Hash::make('password')
+        // ]);
     }
 }

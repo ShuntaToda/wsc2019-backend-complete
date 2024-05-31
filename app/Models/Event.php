@@ -9,6 +9,15 @@ class Event extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        "organizer_id",
+        "name",
+        "slug",
+        "date",
+    ];
+
+    public $timestamps = false;
+
     public function organizer()
     {
         return $this->belongsTo(Organizer::class);

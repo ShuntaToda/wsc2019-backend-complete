@@ -31,7 +31,7 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $e)
     {
-        if ($e instanceof AuthenticationException) {
+        if ($e instanceof AuthenticationException && $request->is("api/*")) {
             return response()->json(["message" => "Invalid token"], 401);
         }
 

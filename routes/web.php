@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/login', [LoginController::class, "index"])->name("login");
 Route::post('/login', [LoginController::class, "login"])->name("login");
 
-Route::get("/", function () {
-    return view("welcome");
+Route::middleware("auth")->get("/", function () {
+    return redirect(route("admin.event.index"));
 })->name("home");
+
+Route::middleware("auth")->prefix("admin")->as("admin.")->group(function () {
+    Route::prefix("event")->as("event.")->group(function () {
+        Route::get("index", [EventController::class, "index"])->name("index");
+    });
+});

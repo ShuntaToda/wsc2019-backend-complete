@@ -17,6 +17,12 @@
                 <label for="inputPassword" class="sr-only">Password</label>
                 <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password">
                 <button class="btn btn-lg btn-primary btn-block" id="login" type="submit">Sign in</button>
+                {{-- @if($errors->has("password") || $errors->has("email"))
+                    <p>Email or password not correct</p>
+                @endif --}}
+                @if($errors->any())
+                    <p>Email or password not correct</p>
+                @endif
             </form>
 
         </main>

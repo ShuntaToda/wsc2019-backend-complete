@@ -28,14 +28,14 @@
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
             <div class="border-bottom mb-3 pt-3 pb-2 event-title">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
-                    <h1 class="h2">{insert event name}</h1>
+                    <h1 class="h2">{{ $event->name }}</h1>
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group mr-2">
                             <a href="events/edit.html" class="btn btn-sm btn-outline-secondary">Edit event</a>
                         </div>
                     </div>
                 </div>
-                <span class="h6">{insert event date}</span>
+                <span class="h6">{{$event->date}}</span>
             </div>
 
             <!-- Tickets -->

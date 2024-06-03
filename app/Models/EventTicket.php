@@ -15,6 +15,7 @@ class EventTicket extends Model
         "cost",
         "special_validity"
     ];
+    public $timestamps = false;
 
     public function registrations()
     {

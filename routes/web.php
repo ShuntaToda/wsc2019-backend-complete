@@ -33,4 +33,10 @@ Route::middleware("auth")->prefix("admin")->as("admin.")->group(function () {
         Route::get("edit/{id}", [EventController::class, "edit"])->name("edit");
         Route::post("edit/{id}", [EventController::class, "update"])->name("edit");
     });
+
+    Route::prefix("report")->as("report.")->group(function () {
+        Route::get("index", function () {
+            return view("reports.index");
+        })->name("index");
+    });
 });

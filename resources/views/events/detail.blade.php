@@ -165,22 +165,14 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Room A</td>
-                        <td>1,000</td>
-                    </tr>
-                    <tr>
-                        <td>Room B</td>
-                        <td>100</td>
-                    </tr>
-                    <tr>
-                        <td>Room C</td>
-                        <td>100</td>
-                    </tr>
-                    <tr>
-                        <td>Room D</td>
-                        <td>250</td>
-                    </tr>
+                        @foreach($event->channels as $channel)
+                            @foreach($channel->rooms as $room)
+                            <tr>
+                                <td>{{$room->name }}</td>
+                                <td>{{ $room->capacity }}</td>
+                            </tr>
+                            @endforeach
+                        @endforeach
                     </tbody>
                 </table>
             </div>

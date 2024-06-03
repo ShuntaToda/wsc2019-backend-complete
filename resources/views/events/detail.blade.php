@@ -64,7 +64,7 @@
                             @elseif($ticket->getDetailSpecailValidity()["type"] === "amount")
                                 <p class="card-text">{{$ticket->getDetailSpecailValidity()["value"]}} tickets available</p>
                             @elseif($ticket->getDetailSpecailValidity()["type"] === "date")
-                                <p class="card-text">Available until {{$ticket->getDetailSpecailValidity()["date"]}}</p>
+                                <p class="card-text">Available until {{$ticket->getDetailSpecailValidity()["value"]}}</p>
                             @endif
                         </div>
                     </div>

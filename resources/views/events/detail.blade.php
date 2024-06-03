@@ -53,33 +53,23 @@
             </div>
 
             <div class="row tickets">
+                @foreach($event->tickets as $ticket)
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
                         <div class="card-body">
-                            <h5 class="card-title">Normal</h5>
-                            <p class="card-text">200.-</p>
-                            <p class="card-text">&nbsp;</p>
+                            <h5 class="card-title">{{$ticket->name}}</h5>
+                            <p class="card-text">{{$ticket->cost}}</p>
+                            @if($ticket->getDetailSpecailValidity() === null)
+                                <p class="card-text">&nbsp;</p>
+                            @elseif($ticket->getDetailSpecailValidity()["type"] === "amount")
+                                <p class="card-text">{{$ticket->getDetailSpecailValidity()["value"]}} tickets available</p>
+                            @elseif($ticket->getDetailSpecailValidity()["type"] === "date")
+                                <p class="card-text">Available until {{$ticket->getDetailSpecailValidity()["date"]}}</p>
+                            @endif
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title">Early Bird</h5>
-                            <p class="card-text">120.-</p>
-                            <p class="card-text">Available until June 1, 2019</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title">VIP</h5>
-                            <p class="card-text">400.-</p>
-                            <p class="card-text">100 tickets available</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
 
             <!-- Sessions -->

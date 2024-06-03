@@ -35,4 +35,19 @@ class EventTicket extends Model
                 return true;
         };
     }
+
+    public function getDetailSpecailValidity()
+    {
+        $validity = json_decode($this->special_validity);
+
+        if ($validity === null) return null;
+
+        // dd($validity);
+        switch ($validity->type) {
+            case ("amount"):
+                return ["type" => "amount", "value" => $validity->amount - $this->registrations->count()];
+            case ("date"):
+                return ["type" => "date", "value" => $validity->date];
+        }
+    }
 }

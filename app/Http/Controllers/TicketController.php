@@ -34,7 +34,6 @@ class TicketController extends Controller
             "name" => ["required"],
             "cost" => ["required", "integer"],
         ]);
-
         $specialValidity = null;
         if ($request->special_validity  === "amount") {
             $request->validate([

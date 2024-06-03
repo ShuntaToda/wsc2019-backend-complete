@@ -42,7 +42,7 @@ Route::middleware("auth")->prefix("admin")->as("admin.")->group(function () {
     });
 
     Route::prefix("ticket")->as("ticket.")->group(function () {
-        Route::get("create", [TicketController::class, "create"])->name("create");
-        Route::post("create", [TicketController::class, "store"])->name("create");
+        Route::get("create/{event_id}", [TicketController::class, "create"])->name("create");
+        Route::post("create/{event_id}", [TicketController::class, "store"])->name("create");
     });
 });

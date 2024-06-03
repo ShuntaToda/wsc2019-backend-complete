@@ -50,6 +50,9 @@
                         </div>
                     </div>
                 </div>
+                @if(session("message"))
+                <div style="color: red">create complete</div>
+                @endif
             </div>
 
             <div class="row tickets">

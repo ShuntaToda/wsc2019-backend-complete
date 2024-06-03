@@ -35,4 +35,8 @@ class Event extends Model
     {
         return $this->hasManyThrough(Registration::class, EventTicket::class, "event_id", "ticket_id");
     }
+    public function programs()
+    {
+        return $this->hasManyThrough(Program::class, Room::class, "event_id", "ticket_id");
+    }
 }

@@ -98,13 +98,19 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td class="text-nowrap">08:30 - 10:00</td>
-                        <td>Talk</td>
-                        <td><a href="sessions/edit.html">Keynote</a></td>
-                        <td class="text-nowrap">An important person</td>
-                        <td class="text-nowrap">Main / Room A</td>
-                    </tr>
+                        @foreach($event->channels as $channel)
+                            @foreach($channel->rooms as $room)
+                                @foreach($room->programs as $program)
+                                <tr>
+                                    <td class="text-nowrap">{{date("H:i", strToTime($program->start))}} - {{date("H:i", strToTime($program->end))}}</td>
+                                    <td>{{$program->type}}</td>
+                                    <td><a href="sessions/edit.html">{{ $program->title }}</a></td>
+                                    <td class="text-nowrap">{{$program->speaker}}</td>
+                                    <td class="text-nowrap">{{$channel->name}} / {{ $room->name }}</td>
+                                </tr>
+                                @endforeach
+                            @endforeach
+                    @endforeach
                     <tr>
                         <td class="text-nowrap">10:15 - 11:00</td>
                         <td>Talk</td>

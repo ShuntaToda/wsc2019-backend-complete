@@ -13,4 +13,9 @@ class Channel extends Model
     {
         return $this->hasMany(Room::class);
     }
+
+    public function getPrograms()
+    {
+        return $this->hasManyThrough(Program::class, Room::class);
+    }
 }

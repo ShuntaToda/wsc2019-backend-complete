@@ -130,22 +130,16 @@
             </div>
 
             <div class="row channels">
+                @foreach($event->channels as $channel)
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
                         <div class="card-body">
-                            <h5 class="card-title">Main</h5>
-                            <p class="card-text">3 sessions, 1 room</p>
+                            <h5 class="card-title">{{$channel->name}}</h5>
+                            <p class="card-text">{{$channel->getPrograms->count()}} sessions, {{$channel->rooms->count()}} room</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title">Side</h5>
-                            <p class="card-text">15 sessions, 2 rooms</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
 
             <!-- Rooms -->

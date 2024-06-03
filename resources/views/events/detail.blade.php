@@ -111,20 +111,6 @@
                                 @endforeach
                             @endforeach
                     @endforeach
-                    <tr>
-                        <td class="text-nowrap">10:15 - 11:00</td>
-                        <td>Talk</td>
-                        <td><a href="sessions/edit.html">What's new in X?</a></td>
-                        <td class="text-nowrap">Another person</td>
-                        <td class="text-nowrap">Main / Room A</td>
-                    </tr>
-                    <tr>
-                        <td class="text-nowrap">10:15 - 11:00</td>
-                        <td>Workshop</td>
-                        <td><a href="sessions/edit.html">Hands-on with Y</a></td>
-                        <td class="text-nowrap">Another person</td>
-                        <td class="text-nowrap">Side / Room C</td>
-                    </tr>
                     </tbody>
                 </table>
             </div>

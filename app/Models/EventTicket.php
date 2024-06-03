@@ -9,6 +9,13 @@ class EventTicket extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        "name",
+        "event_id",
+        "cost",
+        "special_validity"
+    ];
+
     public function registrations()
     {
         return $this->hasMany(Registration::class, "ticket_id");

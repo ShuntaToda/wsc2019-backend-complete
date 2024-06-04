@@ -13,7 +13,13 @@ class LoginController extends Controller
     {
         $attendee = Attendee::where("lastname", $request->lastname)->first();
         if ($attendee !== null && $attendee->registration_code === $request->registration_code) {
-            return $attendee->createToken($request->lastname)->plainTextToken;
+            return [
+                "firstname" => $attendee->firstname,
+                "lastname" => $attendee->lastname,
+                "username" => $attendee->username,
+                "email" => $attendee->email,
+                "token" => $attendee->createToken($request->lastname)->plainTextToken
+            ];
         }
 
         return response()->json(["message" => "Invalid login"], 401);

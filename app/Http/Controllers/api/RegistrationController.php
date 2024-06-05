@@ -54,7 +54,7 @@ class RegistrationController extends Controller
      */
     public function show(Request $request)
     {
-        $registrations = Registration::with(["ticket.event", "programRegistrations"])->get();
+        $registrations = Registration::where("attendee_id", $request->user()->id)->with(["ticket.event", "programRegistrations"])->get();
         $formatted_registrations = $registrations->map(function ($registration) {
             return [
                 "event" => [

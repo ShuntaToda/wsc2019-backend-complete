@@ -17,6 +17,9 @@ class EventTicket extends Model
     ];
     public $timestamps = false;
 
+
+    protected $appends = ["available", "description"];
+
     public function registrations()
     {
         return $this->hasMany(Registration::class, "ticket_id");
@@ -39,6 +42,27 @@ class EventTicket extends Model
                 $target_date = $special_validity->date;
                 $current_data = date("Y-m-d");
                 return $target_date >= $current_data;
+            default:
+                return true;
+        };
+    }
+
+    public function getAvailableAttribute()
+    {
+        return $this->isAvailable();
+    }
+
+    public function getDescriptionAttribute()
+    {
+        if ($this->special_validity === null || $this->isAvailable()) return null;
+        $special_validity = json_decode($this->special_validity);
+        switch ($special_validity->type) {
+            case ("amount"):
+                $ticket_count = $this->registrations()->count();
+                return $special_validity->amount - $ticket_count . "tickets available";
+            case ("date"):
+                $target_date = $special_validity->date;
+                return "Available until " . $target_date;
             default:
                 return true;
         };

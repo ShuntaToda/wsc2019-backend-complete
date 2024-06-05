@@ -54,7 +54,7 @@ class EventTicket extends Model
 
     public function getDescriptionAttribute()
     {
-        if ($this->special_validity === null && $this->isAvailable() === false) return null;
+        if ($this->special_validity === null || $this->isAvailable() === false) return null;
         $special_validity = json_decode($this->special_validity);
         switch ($special_validity->type) {
             case ("amount"):
